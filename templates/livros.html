@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Livros</title>
+</head>
+
+<body>
+
+    <h2>Livros</h2>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <div style="
+                background:#d4edda;
+                color:#155724;
+                padding:10px;
+                margin-bottom:10px;
+                border:1px solid #c3e6cb;
+            ">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    <form action="/buscar">
+        <input type="text" name="titulo" placeholder="Pesquisar livro">
+
+        <button type="submit">
+            Buscar
+        </button>
+    </form>
+
+    <br>
+
+    <a href="/novo">Novo Livro</a>
+
+    <table border="1">
+
+        <tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>ISBN</th>
+            <th>Valor</th>
+            <th>Estoque</th>
+            <th>Ações</th>
+        </tr>
+
+        {% for livro in livros %}
+
+        <tr>
+
+            <td>{{ livro.id_livro }}</td>
+            <td>{{ livro.titulo }}</td>
+            <td>{{ livro.isbn }}</td>
+            <td>{{ livro.valor }}</td>
+            <td>{{ livro.estoque }}</td>
+
+            <td>
+
+                <a href="/editar/{{ livro.id_livro }}">
+                    Editar
+                </a>
+
+                |
+
+                <a href="/excluir/{{ livro.id_livro }}"
+                    onclick="return confirm('Deseja realmente excluir o livro: {{ livro.titulo }}?')">
+                    Excluir
+                </a>
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+</body>
+
+</html>

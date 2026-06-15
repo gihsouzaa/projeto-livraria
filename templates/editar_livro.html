@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Editar Livro</title>
+</head>
+
+<body>
+
+    <h2>Editar Livro</h2>
+
+    <form action="/atualizar/{{ livro.id_livro }}" method="POST">
+
+        <input name="titulo" value="{{ livro.titulo }}"><br><br>
+
+        <input name="valor" value="{{ livro.valor }}"><br><br>
+
+        <input name="estoque" value="{{ livro.estoque }}"><br><br>
+
+        <button type="submit">
+            Atualizar
+        </button>
+
+    </form>
+
+</body>
+
+</html>
